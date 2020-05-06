@@ -1,0 +1,148 @@
+{
+  "pageModelVersion": "19.3.1",
+  "title": "",
+  "description": "",
+  "variables": {
+    "getGetopportunitiesListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "fnsaaspoc/getGetopportunities",
+        "idAttribute": "OptyNumber",
+        "itemsPath": "items",
+        "responseType": "page:getGetopportunitiesResponse"
+      }
+    },
+    "oj_list_view_962201574_1SelectedId": {
+      "type": "string",
+      "defaultValue": ""
+    }
+  },
+  "metadata": {},
+  "types": {
+    "getGetopportunitiesResponse": {
+      "items": [
+        {
+          "Name": "string",
+          "OptyNumber": "string",
+          "PrimaryContactPartyName": "string",
+          "StatusCode": "string"
+        }
+      ]
+    },
+    "@decorators.getGetopportunitiesResponse": {
+      "endpoint": "getGetopportunities",
+      "service": "fnsaaspoc",
+      "path": "response"
+    }
+  },
+  "chains": {
+    "navigateToGetOpportunitiesIdDetailChain": {
+      "root": "navigateToDetail",
+      "variables": {
+        "getOpportunitiesIdId": {
+          "type": "string",
+          "input": "fromCaller",
+          "required": true
+        }
+      },
+      "actions": {
+        "navigateToDetail": {
+          "module": "vb/action/builtin/navigateToPageAction",
+          "parameters": {
+            "history": "push",
+            "page": "main-get-opportunities-id-detail",
+            "params": {
+              "getOpportunitiesIdId": "[[ $chain.variables.getOpportunitiesIdId ]]"
+            }
+          },
+          "outcomes": {
+            "success": ""
+          }
+        }
+      }
+    },
+    "oj_list_view_962201574_1ChangeSelectionChain": {
+      "variables": {
+        "getOpportunitiesIdId": {
+          "type": "string",
+          "input": "fromCaller",
+          "defaultValue": ""
+        }
+      },
+      "root": "assignVariable",
+      "actions": {
+        "assignVariable": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$page.variables.oj_list_view_962201574_1SelectedId": {
+              "source": "[[ $chain.variables.getOpportunitiesIdId ]]"
+            }
+          },
+          "outcomes": {
+            "success": ""
+          }
+        }
+      }
+    },
+    "ListItemClickChain": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "key": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "current": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "",
+      "actions": {}
+    }
+  },
+  "eventListeners": {
+    "oj_list_view_962201574_1SelectionChanged": {
+      "chains": [
+        {
+          "chainId": "oj_list_view_962201574_1ChangeSelectionChain",
+          "parameters": {
+            "getOpportunitiesIdId": "[[ $event.detail.value[0] || '' ]]"
+          }
+        }
+      ]
+    },
+    "getOpportunitiesIdDetailButtonClicked": {
+      "chains": [
+        {
+          "chainId": "navigateToGetOpportunitiesIdDetailChain",
+          "parameters": {
+            "getOpportunitiesIdId": "[[ $page.variables.oj_list_view_962201574_1SelectedId ]]"
+          }
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-list-view": {
+        "path": "ojs/ojlistview"
+      },
+      "oj-vb-list-item": {
+        "path": "vb/components/list-item/loader"
+      },
+      "oj-toolbar": {
+        "path": "ojs/ojtoolbar"
+      },
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      }
+    }
+  }
+}

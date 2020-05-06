@@ -1,0 +1,514 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Fnsaaspoc",
+        "x-vb": {
+            "dt-serviceAuthentication": {
+                "type": "oracle_oauth_userid",
+                "clientIdCredentials": "oracle_custom_c05c5200-af54-47c8-bb71-583e6b4524af",
+                "scope": "https://fntest.oracle.com/fntest"
+            },
+            "dt-wizardType": "rest"
+        },
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "https"
+    ],
+    "host": "iq37z7aqmmmbcddqoezkwdeai4.apigateway.us-phoenix-1.oci.customer-oci.com",
+    "basePath": "/fnsaaspoc",
+    "definitions": {
+        "Getgetopportunity": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Item"
+                    }
+                },
+                "count": {
+                    "type": "number"
+                },
+                "hasMore": {
+                    "type": "boolean"
+                },
+                "limit": {
+                    "type": "number"
+                },
+                "offset": {
+                    "type": "number"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            }
+        },
+        "Item": {
+            "type": "object",
+            "properties": {
+                "OptyNumber": {
+                    "type": "string"
+                },
+                "TargetPartyName": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "DescriptionText": {
+                    "type": "string"
+                },
+                "StatusCode": {
+                    "type": "string"
+                },
+                "PrimaryContactPartyName": {
+                    "type": "string"
+                },
+                "PrimaryContactFormattedPhoneNumber": {
+                    "type": "any"
+                },
+                "PrimaryContactEmailAddress": {
+                    "type": "any"
+                }
+            }
+        },
+        "Link": {
+            "type": "object",
+            "properties": {
+                "rel": {
+                    "type": "string"
+                },
+                "href": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                }
+            }
+        },
+        "Patchopportunitiesid": {
+            "type": "object",
+            "properties": {
+                "BudgetAvailableDate": {
+                    "type": "any"
+                },
+                "BudgetedFlag": {
+                    "type": "boolean"
+                },
+                "PrimaryOrganizationId": {
+                    "type": "number"
+                },
+                "ChampionFlag": {
+                    "type": "boolean"
+                },
+                "CreatedBy": {
+                    "type": "string"
+                },
+                "CreationDate": {
+                    "type": "string"
+                },
+                "CurrencyCode": {
+                    "type": "string"
+                },
+                "SalesMethodId": {
+                    "type": "number"
+                },
+                "SalesStageId": {
+                    "type": "number"
+                },
+                "CustomerAccountId": {
+                    "type": "any"
+                },
+                "DealHorizonCode": {
+                    "type": "any"
+                },
+                "DecisionLevelCode": {
+                    "type": "any"
+                },
+                "Description": {
+                    "type": "any"
+                },
+                "LastUpdateDate": {
+                    "type": "string"
+                },
+                "LastUpdatedBy": {
+                    "type": "string"
+                },
+                "LastUpdateLogin": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "OptyId": {
+                    "type": "number"
+                },
+                "OptyNumber": {
+                    "type": "string"
+                },
+                "OwnerResourcePartyId": {
+                    "type": "number"
+                },
+                "PrimaryCompetitorId": {
+                    "type": "any"
+                },
+                "KeyContactId": {
+                    "type": "number"
+                },
+                "ReasonWonLostCode": {
+                    "type": "any"
+                },
+                "RiskLevelCode": {
+                    "type": "any"
+                },
+                "StatusCode": {
+                    "type": "string"
+                },
+                "StrategicLevelCode": {
+                    "type": "any"
+                },
+                "PrimaryRevenueId": {
+                    "type": "number"
+                },
+                "TargetPartyId": {
+                    "type": "number"
+                },
+                "TargetPartyName": {
+                    "type": "string"
+                },
+                "SalesMethod": {
+                    "type": "string"
+                },
+                "SalesStage": {
+                    "type": "string"
+                },
+                "DescriptionText": {
+                    "type": "string"
+                },
+                "AverageDaysAtStage": {
+                    "type": "number"
+                },
+                "MaximumDaysInStage": {
+                    "type": "number"
+                },
+                "PhaseCd": {
+                    "type": "string"
+                },
+                "QuotaFactor": {
+                    "type": "number"
+                },
+                "RcmndWinProb": {
+                    "type": "number"
+                },
+                "StageStatusCd": {
+                    "type": "string"
+                },
+                "StgOrder": {
+                    "type": "number"
+                },
+                "EffectiveDate": {
+                    "type": "string"
+                },
+                "Revenue": {
+                    "type": "number"
+                },
+                "WinProb": {
+                    "type": "number"
+                },
+                "SourceType": {
+                    "type": "string"
+                },
+                "PrimaryContactPartyName": {
+                    "type": "string"
+                },
+                "PrimaryContactFormattedPhoneNumber": {
+                    "type": "any"
+                },
+                "PrimaryContactEmailAddress": {
+                    "type": "any"
+                },
+                "Comments": {
+                    "type": "any"
+                },
+                "PartyName1": {
+                    "type": "string"
+                },
+                "PrSrcNumber": {
+                    "type": "any"
+                },
+                "DownsideAmount": {
+                    "type": "number"
+                },
+                "UpsideAmount": {
+                    "type": "number"
+                },
+                "EmailAddress": {
+                    "type": "string"
+                },
+                "LookupCategory": {
+                    "type": "string"
+                },
+                "OptyCreationDate": {
+                    "type": "string"
+                },
+                "ExpectAmount": {
+                    "type": "number"
+                },
+                "OptyCreatedBy": {
+                    "type": "string"
+                },
+                "CrmConversionRate": {
+                    "type": "number"
+                },
+                "ForecastOverrideCode": {
+                    "type": "string"
+                },
+                "OptyLastUpdateDate": {
+                    "type": "string"
+                },
+                "OptyLastUpdatedBy": {
+                    "type": "string"
+                },
+                "SalesChannelCd": {
+                    "type": "string"
+                },
+                "LineOfBusinessCode": {
+                    "type": "any"
+                },
+                "PartyUniqueName1": {
+                    "type": "any"
+                },
+                "BatchTag": {
+                    "type": "any"
+                },
+                "SalesAccountUniqueName": {
+                    "type": "any"
+                },
+                "PrimaryPartnerOrgPartyName": {
+                    "type": "any"
+                },
+                "PrimaryPartnerId": {
+                    "type": "any"
+                },
+                "RegistrationStatus": {
+                    "type": "any"
+                },
+                "RegistrationType": {
+                    "type": "any"
+                },
+                "RecordSet": {
+                    "type": "any"
+                },
+                "Registered": {
+                    "type": "string"
+                },
+                "UpdateFlag": {
+                    "type": "boolean"
+                },
+                "DeleteFlag": {
+                    "type": "boolean"
+                },
+                "Selected": {
+                    "type": "any"
+                },
+                "AssetNumber": {
+                    "type": "any"
+                },
+                "AssetId": {
+                    "type": "any"
+                },
+                "AssetProduct": {
+                    "type": "any"
+                },
+                "AssetSerialNumber": {
+                    "type": "any"
+                },
+                "ClosePeriod": {
+                    "type": "any"
+                },
+                "PredWinProb": {
+                    "type": "any"
+                },
+                "HintCode": {
+                    "type": "any"
+                },
+                "RecommendedAction": {
+                    "type": "any"
+                },
+                "OwnerPartyNumber": {
+                    "type": "string"
+                },
+                "AccountPartyNumber": {
+                    "type": "string"
+                },
+                "PrimaryCompetitorPartyNumber": {
+                    "type": "any"
+                },
+                "PrimaryContactPartyNumber": {
+                    "type": "string"
+                },
+                "PrimaryPartnerCompanyNumber": {
+                    "type": "any"
+                },
+                "QuotedFlag": {
+                    "type": "boolean"
+                },
+                "CrmCurrencyCode": {
+                    "type": "string"
+                },
+                "Region_c": {
+                    "type": "string"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link1"
+                    }
+                }
+            }
+        },
+        "Link1": {
+            "type": "object",
+            "properties": {
+                "rel": {
+                    "type": "string"
+                },
+                "href": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/Property"
+                }
+            }
+        },
+        "Property": {
+            "type": "object",
+            "properties": {
+                "changeIndicator": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "paths": {
+        "/opportunities": {
+            "get": {
+                "operationId": "getGetopportunities",
+                "produces": [
+                    "application/json",
+                    "application/json"
+                ],
+                "responses": {
+                    "default": {
+                        "examples": {
+                            "application/json": "{\n    \"items\": [\n        {\n            \"OptyNumber\": \"54008\",\n            \"TargetPartyName\": \"ABCO\",\n            \"Name\": \"WebServers\",\n            \"DescriptionText\": \"Verbal Agreement on all Terms and Conditions\",\n            \"StatusCode\": \"OPEN\",\n            \"PrimaryContactPartyName\": \"Niall Commiskey\",\n            \"PrimaryContactFormattedPhoneNumber\": null,\n            \"PrimaryContactEmailAddress\": null\n        },\n        {\n            \"OptyNumber\": \"54009\",\n            \"TargetPartyName\": \"Zamora and Sons and Sons\",\n            \"Name\": \"New HR System for Global\",\n            \"DescriptionText\": \"Looking for the Right Contacts, Characteristics, Determining the Need, Budget and Sponsor\",\n            \"StatusCode\": \"OPEN\",\n            \"PrimaryContactPartyName\": \"Cathal Brugha\",\n            \"PrimaryContactFormattedPhoneNumber\": null,\n            \"PrimaryContactEmailAddress\": null\n        }\n    ],\n    \"count\": 2,\n    \"hasMore\": false,\n    \"limit\": 25,\n    \"offset\": 0,\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities\",\n            \"name\": \"opportunities\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"action\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/action/assignOpportunity\",\n            \"name\": \"assignOpportunity\",\n            \"kind\": \"other\"\n        },\n        {\n            \"rel\": \"action\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/action/copyOpportunity\",\n            \"name\": \"copyOpportunity\",\n            \"kind\": \"other\"\n        }\n    ]\n}"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Getgetopportunity"
+                        },
+                        "description": "The content returned by the server."
+                    },
+                    "x-vb": {
+                        "inferred": {
+                            "default": true
+                        }
+                    }
+                },
+                "x-vb-actionHint": "retrieveMany"
+            }
+        },
+        "/opportunities/{id}": {
+            "get": {
+                "operationId": "getOpportunitiesId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "default": {
+                        "examples": {
+                            "application/json": "{\n    \"OptyNumber\": \"54008\",\n    \"TargetPartyName\": \"ABCO\",\n    \"Name\": \"WebServers\",\n    \"DescriptionText\": \"Verbal Agreement on all Terms and Conditions\",\n    \"StatusCode\": \"OPEN\",\n    \"PrimaryContactPartyName\": \"Niall Commiskey\",\n    \"PrimaryContactFormattedPhoneNumber\": null,\n    \"PrimaryContactEmailAddress\": null\n}"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Item"
+                        },
+                        "description": "The content returned by the server."
+                    },
+                    "x-vb": {
+                        "inferred": {
+                            "default": true
+                        }
+                    }
+                },
+                "x-vb-actionHint": "retrieveOne"
+            },
+            "patch": {
+                "operationId": "patchOpportunitiesId",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "x-vb": {
+                            "examples": {
+                                "application/json": "{\n\t\"StatusCode\":\"OPEN\"\n}"
+                            },
+                            "inferred": true
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Item"
+                        },
+                        "name": "body",
+                        "in": "body"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "default": {
+                        "examples": {
+                            "application/json": "{\n    \"BudgetAvailableDate\": null,\n    \"BudgetedFlag\": false,\n    \"PrimaryOrganizationId\": 300000000760008,\n    \"ChampionFlag\": false,\n    \"CreatedBy\": \"angelo.santagata@oracle.com\",\n    \"CreationDate\": \"2019-11-18T12:39:58.433+00:00\",\n    \"CurrencyCode\": \"USD\",\n    \"SalesMethodId\": 300000000132175,\n    \"SalesStageId\": 300000000132177,\n    \"CustomerAccountId\": null,\n    \"DealHorizonCode\": null,\n    \"DecisionLevelCode\": null,\n    \"Description\": null,\n    \"LastUpdateDate\": \"2019-11-18T23:21:23+00:00\",\n    \"LastUpdatedBy\": \"angelo.santagata@oracle.com\",\n    \"LastUpdateLogin\": \"965525AC2C679B9FE05384156E0AE810\",\n    \"Name\": \"WebServers\",\n    \"OptyId\": 300000047110534,\n    \"OptyNumber\": \"54008\",\n    \"OwnerResourcePartyId\": 300000043975096,\n    \"PrimaryCompetitorId\": null,\n    \"KeyContactId\": 300000045943623,\n    \"ReasonWonLostCode\": null,\n    \"RiskLevelCode\": null,\n    \"StatusCode\": \"OPEN\",\n    \"StrategicLevelCode\": null,\n    \"PrimaryRevenueId\": 300000047110535,\n    \"TargetPartyId\": 300000044957122,\n    \"TargetPartyName\": \"ABCO\",\n    \"SalesMethod\": \"Standard Sales Process\",\n    \"SalesStage\": \"07 - Closed\",\n    \"DescriptionText\": \"Verbal Agreement on all Terms and Conditions\",\n    \"AverageDaysAtStage\": 30,\n    \"MaximumDaysInStage\": 800,\n    \"PhaseCd\": \"CLOSING\",\n    \"QuotaFactor\": 1,\n    \"RcmndWinProb\": 100,\n    \"StageStatusCd\": \"WON\",\n    \"StgOrder\": 7,\n    \"EffectiveDate\": \"2019-11-18\",\n    \"Revenue\": 0,\n    \"WinProb\": 100,\n    \"SourceType\": \"OPPORTUNITY\",\n    \"PrimaryContactPartyName\": \"Niall Commiskey\",\n    \"PrimaryContactFormattedPhoneNumber\": null,\n    \"PrimaryContactEmailAddress\": null,\n    \"Comments\": null,\n    \"PartyName1\": \"Angelo Santagata\",\n    \"PrSrcNumber\": null,\n    \"DownsideAmount\": 0,\n    \"UpsideAmount\": 0,\n    \"EmailAddress\": \"angelo.santagata@oracle.com\",\n    \"LookupCategory\": \"OPEN\",\n    \"OptyCreationDate\": \"2019-11-18T12:39:58.433+00:00\",\n    \"ExpectAmount\": 0,\n    \"OptyCreatedBy\": \"angelo.santagata@oracle.com\",\n    \"CrmConversionRate\": 1,\n    \"ForecastOverrideCode\": \"CRITERIA\",\n    \"OptyLastUpdateDate\": \"2019-11-18T23:21:23+00:00\",\n    \"OptyLastUpdatedBy\": \"angelo.santagata@oracle.com\",\n    \"SalesChannelCd\": \"ZPM_DIRECT_CHANNEL_TYPES\",\n    \"LineOfBusinessCode\": null,\n    \"PartyUniqueName1\": null,\n    \"BatchTag\": null,\n    \"SalesAccountUniqueName\": null,\n    \"PrimaryPartnerOrgPartyName\": null,\n    \"PrimaryPartnerId\": null,\n    \"RegistrationStatus\": null,\n    \"RegistrationType\": null,\n    \"RecordSet\": null,\n    \"Registered\": \"NO\",\n    \"UpdateFlag\": true,\n    \"DeleteFlag\": true,\n    \"Selected\": null,\n    \"AssetNumber\": null,\n    \"AssetId\": null,\n    \"AssetProduct\": null,\n    \"AssetSerialNumber\": null,\n    \"ClosePeriod\": null,\n    \"PredWinProb\": null,\n    \"HintCode\": null,\n    \"RecommendedAction\": null,\n    \"OwnerPartyNumber\": \"30061\",\n    \"AccountPartyNumber\": \"ARVV\",\n    \"PrimaryCompetitorPartyNumber\": null,\n    \"PrimaryContactPartyNumber\": \"44214\",\n    \"PrimaryPartnerCompanyNumber\": null,\n    \"QuotedFlag\": false,\n    \"CrmCurrencyCode\": \"USD\",\n    \"Region_c\": \"ALL\",\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008\",\n            \"name\": \"opportunities\",\n            \"kind\": \"item\",\n            \"properties\": {\n                \"changeIndicator\": \"ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000002770400000002737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000097372001B6F7261636C652E6A626F2E646F6D61696E2E4E756C6C56616C75655899C1C58DAABEEB02000149000A6D53514C54797065496478700000000C78\"\n            }\n        },\n        {\n            \"rel\": \"canonical\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008\",\n            \"name\": \"opportunities\",\n            \"kind\": \"item\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/SalesStageLOV\",\n            \"name\": \"SalesStageLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/CustomerAccountPickerVO\",\n            \"name\": \"CustomerAccountPickerVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/LobForSearchLookupPVO\",\n            \"name\": \"LobForSearchLookupPVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/OptyStrategicValueLOV\",\n            \"name\": \"OptyStrategicValueLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/RevenueSalesChannelLookupVO\",\n            \"name\": \"RevenueSalesChannelLookupVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/RegisteredLookupPVO\",\n            \"name\": \"RegisteredLookupPVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/RegistrationStatusLookupPVO\",\n            \"name\": \"RegistrationStatusLookupPVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/OptyDecisionLevelLOV\",\n            \"name\": \"OptyDecisionLevelLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/RatedCurrenciesVO\",\n            \"name\": \"RatedCurrenciesVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/OptyRiskLevelLOV\",\n            \"name\": \"OptyRiskLevelLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/FrcstOverrideCodeLOV\",\n            \"name\": \"FrcstOverrideCodeLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/LOVVA_For_Region_c\",\n            \"name\": \"LOVVA_For_Region_c\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/ClosePeriodLookupPVO\",\n            \"name\": \"ClosePeriodLookupPVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/SearchFilteringLookupPVO\",\n            \"name\": \"SearchFilteringLookupPVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/YesNoLOV\",\n            \"name\": \"YesNoLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/BusinessUnitPVO\",\n            \"name\": \"BusinessUnitPVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/RegistrationTypeLookupPVO\",\n            \"name\": \"RegistrationTypeLookupPVO\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/OptyStatusZbsValuesLOV\",\n            \"name\": \"OptyStatusZbsValuesLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/SalesMethodLOV\",\n            \"name\": \"SalesMethodLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/AssetVA\",\n            \"name\": \"AssetVA\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/PartnerPickerVA\",\n            \"name\": \"PartnerPickerVA\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/ReasonWonLostLOV\",\n            \"name\": \"ReasonWonLostLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"lov\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/lov/OptyDealHorizonLOV\",\n            \"name\": \"OptyDealHorizonLOV\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/AiObjectHints\",\n            \"name\": \"AiObjectHints\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/Assessments\",\n            \"name\": \"Assessments\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/Attachment\",\n            \"name\": \"Attachment\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/ChildRevenue\",\n            \"name\": \"ChildRevenue\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/Note\",\n            \"name\": \"Note\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/OpportunityCompetitor2\",\n            \"name\": \"OpportunityCompetitor2\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/OpportunityContact\",\n            \"name\": \"OpportunityContact\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/OpportunityDeal\",\n            \"name\": \"OpportunityDeal\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/OpportunityLead\",\n            \"name\": \"OpportunityLead\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/OpportunityResource\",\n            \"name\": \"OpportunityResource\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/OpportunitySource1\",\n            \"name\": \"OpportunitySource1\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/RevenuePartnerPrimary\",\n            \"name\": \"RevenuePartnerPrimary\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"child\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/child/opportunityStageSnapshots\",\n            \"name\": \"opportunityStageSnapshots\",\n            \"kind\": \"collection\"\n        },\n        {\n            \"rel\": \"action\",\n            \"href\": \"https://cccn-test.fa.em2.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/opportunities/54008/action/ExtF2\",\n            \"name\": \"ExtF2\",\n            \"kind\": \"other\"\n        }\n    ]\n}"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Patchopportunitiesid"
+                        },
+                        "description": "The content returned by the server."
+                    },
+                    "x-vb": {
+                        "inferred": {
+                            "default": true
+                        }
+                    }
+                },
+                "x-vb-actionHint": "retrieveMany"
+            }
+        }
+    }
+}

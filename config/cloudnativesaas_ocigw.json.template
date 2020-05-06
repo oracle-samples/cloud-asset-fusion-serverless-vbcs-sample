@@ -1,0 +1,57 @@
+{
+  "requestPolicies": {
+    "authentication": {
+      "type": "CUSTOM_AUTHENTICATION",
+      "isAnonymousAccessAllowed": true,
+      "functionId": "<IDCS_OCIGW_FN_OCID>",
+      "tokenHeader": "Authorization"
+    }
+  },
+  "routes": [
+    {
+      "path": "/opportunities",
+      "methods": [
+        "GET"
+      ],
+      "requestPolicies": {},
+      "backend": {
+        "type": "ORACLE_FUNCTIONS_BACKEND",
+        "functionId": "<SAASOPPORTUNITIES_FN_OCID>>"
+      }
+    },
+
+    {
+      "path": "/opportunities/{optyid}",
+      "methods": [
+        "GET"
+      ],
+      "requestPolicies": {},
+      "backend": {
+        "type": "ORACLE_FUNCTIONS_BACKEND",
+        "functionId": "<SAASOPPORTUNITIES_FN_OCID>"
+      }
+    },
+    {
+      "path": "/opportunities/{optyid}",
+      "methods": [
+        "PATCH"
+      ],
+      "requestPolicies": {},
+      "backend": {
+        "type": "ORACLE_FUNCTIONS_BACKEND",
+        "functionId": "<SAASOPPORTUNITIES_FN_OCID>"
+      }
+    },
+    {
+      "path": "/gwauthtest",
+      "methods": [
+        "GET"
+      ],
+      "requestPolicies": {},
+      "backend": {
+        "type": "ORACLE_FUNCTIONS_BACKEND",
+        "functionId": "<GWAUTHTEST_FN_OCID>"
+      }
+    }
+  ]
+}

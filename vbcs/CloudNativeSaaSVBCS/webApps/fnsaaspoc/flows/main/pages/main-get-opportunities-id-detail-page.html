@@ -1,0 +1,31 @@
+<!--
+Copyright © 2020, Oracle and/or its affiliates. All rights reserved.
+Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+-->
+<div class="oj-flex">
+  <h1 id="h1-1453155956-1" class="oj-flex-item oj-sm-12 oj-md-12">Opportunity Details</h1>
+</div>
+<div class="oj-flex">
+  <oj-form-layout id="oj-form-layout-1453155956-1" label-edge="start" class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-input-text value="[[ $page.variables.getOpportunitiesId.TargetPartyName ]]" readonly="true" label-hint="Company Name" id="oj-input-text-1453155956-6"></oj-input-text>
+    <oj-input-text value="[[ $page.variables.getOpportunitiesId.DescriptionText ]]" readonly="true" label-hint="Opportunity Descrption" id="oj-input-text-1453155956-1" class="oj-form-control-full-width"></oj-input-text>
+    <oj-input-text value="[[ $page.variables.getOpportunitiesId.Name ]]" readonly="true" label-hint="Name" id="oj-input-text-1453155956-2"></oj-input-text>
+    <oj-input-text value="[[ $page.variables.getOpportunitiesId.OptyNumber ]]" readonly="true" label-hint="OptyNumber" id="oj-input-text-1453155956-3"></oj-input-text>
+    <oj-label id="oj-label-1453155956-1">Primary Email Address</oj-label>
+    <p id="oj-bind-text-1453155956-1" aria-labelledby="oj-label-1453155956-1">
+      <oj-bind-text value="[[ $page.variables.getOpportunitiesId.PrimaryContactEmailAddress ]]"></oj-bind-text>
+    </p>
+    <oj-label id="oj-label-1453155956-2">Phone Number</oj-label>
+    <p id="oj-bind-text-1453155956-2" aria-labelledby="oj-label-1453155956-2">
+      <oj-bind-text value="[[ $page.variables.getOpportunitiesId.PrimaryContactFormattedPhoneNumber ]]"></oj-bind-text>
+    </p>
+    <oj-input-text value="[[ $page.variables.getOpportunitiesId.PrimaryContactPartyName ]]" readonly="true" label-hint="Contact Name" id="oj-input-text-1453155956-4"></oj-input-text>
+    <oj-input-text value="[[ $page.variables.getOpportunitiesId.StatusCode ]]" readonly="true" label-hint="Status" id="oj-input-text-1453155956-5"></oj-input-text>
+  </oj-form-layout>
+</div>
+<div class="oj-flex">
+  <oj-toolbar id="oj-toolbar-1453155956-1" chroming="full" class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-button id="oj-button-1453155956-1" on-oj-action="[[$page.listeners.backButtonClicked]]">Back</oj-button>
+    <oj-button id="oj-button-1453155956-2" on-oj-action="[[$listeners.ojButton14531559562OjAction]]">Mark As WON</oj-button>
+  </oj-toolbar>
+</div>

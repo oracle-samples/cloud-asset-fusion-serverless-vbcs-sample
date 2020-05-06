@@ -1,0 +1,174 @@
+{
+  "pageModelVersion": "19.3.1",
+  "title": "getOpportunitiesId Detail",
+  "description": "Displays getOpportunitiesId record",
+  "variables": {
+    "getOpportunitiesId": {
+      "type": "page:getOpportunitiesIdResponse"
+    },
+    "getOpportunitiesIdId": {
+      "type": "string",
+      "required": true,
+      "input": "fromUrl"
+    }
+  },
+  "metadata": {},
+  "types": {
+    "getOpportunitiesIdResponse": {
+      "DescriptionText": "string",
+      "Name": "string",
+      "OptyNumber": "string",
+      "PrimaryContactEmailAddress": "any",
+      "PrimaryContactFormattedPhoneNumber": "any",
+      "PrimaryContactPartyName": "string",
+      "StatusCode": "string",
+      "TargetPartyName": "string"
+    },
+    "@decorators.getOpportunitiesIdResponse": {
+      "endpoint": "getOpportunitiesId",
+      "service": "fnsaaspoc",
+      "path": "request"
+    }
+  },
+  "chains": {
+    "goBackChain": {
+      "root": "navigateBack",
+      "actions": {
+        "navigateBack": {
+          "module": "vb/action/builtin/navigateBackAction",
+          "outcomes": {
+            "success": ""
+          }
+        }
+      }
+    },
+    "loadGetOpportunitiesIdChain": {
+      "root": "loadGetOpportunitiesId",
+      "actions": {
+        "loadGetOpportunitiesId": {
+          "module": "vb/action/builtin/restAction",
+          "parameters": {
+            "endpoint": "fnsaaspoc/getOpportunitiesId",
+            "uriParams": {
+              "id": "[[ $page.variables.getOpportunitiesIdId ]]"
+            },
+            "responseType": "page:getOpportunitiesIdResponse"
+          },
+          "outcomes": {
+            "success": "assignPayload",
+            "failure": "fireErrorNotification"
+          }
+        },
+        "assignPayload": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$page.variables.getOpportunitiesId": {
+              "source": "[[ $chain.results.loadGetOpportunitiesId.body || $chain.results.loadGetOpportunitiesId.content ]]"
+            }
+          },
+          "outcomes": {}
+        },
+        "fireErrorNotification": {
+          "module": "vb/action/builtin/fireNotificationEventAction",
+          "parameters": {
+            "summary": "Could not load data",
+            "message": "[[ 'Could not load data: status ' + $chain.results.loadGetOpportunitiesId.payload.status ]]",
+            "type": "error",
+            "displayMode": "persist"
+          },
+          "outcomes": {}
+        }
+      }
+    },
+    "MarkAsWon": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "callRestEndpoint1",
+      "actions": {
+        "callRestEndpoint1": {
+          "module": "vb/action/builtin/restAction",
+          "parameters": {
+            "endpoint": "fnsaaspoc/patchOpportunitiesId",
+            "uriParams": {
+              "id": "{{ $page.variables.getOpportunitiesId.OptyNumber }}"
+            },
+            "body": {
+              "StatusCode": "WON"
+            }
+          },
+          "outcomes": {
+            "success": "fireNotification1"
+          }
+        },
+        "fireNotification1": {
+          "module": "vb/action/builtin/fireNotificationEventAction",
+          "description": "Opportunity Updated",
+          "label": "Opportunity Updated",
+          "parameters": {
+            "summary": "Opportunity Updated",
+            "message": "Opportunity Updated",
+            "displayMode": "transient",
+            "type": "info"
+          },
+          "outcomes": {
+            "success": "navigateBack1"
+          }
+        },
+        "navigateBack1": {
+          "module": "vb/action/builtin/navigateBackAction"
+        }
+      }
+    }
+  },
+  "eventListeners": {
+    "backButtonClicked": {
+      "chains": [
+        {
+          "chainId": "goBackChain"
+        }
+      ]
+    },
+    "vbEnter": {
+      "chains": [
+        {
+          "chainId": "loadGetOpportunitiesIdChain"
+        }
+      ]
+    },
+    "ojButton14531559562OjAction": {
+      "chains": [
+        {
+          "chainId": "MarkAsWon",
+          "parameters": {
+            "detail": "{{ $event.detail }}"
+          }
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-form-layout": {
+        "path": "ojs/ojformlayout"
+      },
+      "oj-input-text": {
+        "path": "ojs/ojinputtext"
+      },
+      "oj-label": {
+        "path": "ojs/ojlabel"
+      },
+      "oj-toolbar": {
+        "path": "ojs/ojtoolbar"
+      },
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      }
+    }
+  }
+}

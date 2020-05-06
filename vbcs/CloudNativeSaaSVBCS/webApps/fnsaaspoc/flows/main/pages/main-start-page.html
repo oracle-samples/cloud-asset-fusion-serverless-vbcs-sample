@@ -1,0 +1,34 @@
+<!--
+Copyright © 2020, Oracle and/or its affiliates. All rights reserved.
+Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+-->
+<div class="oj-flex">
+  <h1 id="h1-962201574-1" class="oj-flex-item oj-sm-12 oj-md-12">Opportunities</h1>
+</div>
+<div class="oj-flex">
+  <oj-toolbar id="oj-toolbar-for-oj-list-view-962201574-1" chroming="full" class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-button disabled="[[ $page.variables.oj_list_view_962201574_1SelectedId === '' ]]" id="oj-button-962201574-1" on-oj-action="[[$page.listeners.getOpportunitiesIdDetailButtonClicked]]">Details</oj-button>
+  </oj-toolbar>
+</div>
+<div class="oj-flex">
+  <oj-list-view id="oj-list-view-962201574-1" class="oj-flex-item oj-sm-12 oj-md-12" data="[[$page.variables.getGetopportunitiesListSDP]]" selection-mode="single" on-selection-changed="[[ $page.listeners.oj_list_view_962201574_1SelectionChanged ]]">
+    <template slot="itemTemplate">
+      <oj-vb-list-item :id="[['OJ-VB-LIST-ITEM-962201574-1-' + $current.index]]">
+        <p slot="title1">
+          <oj-bind-text value="[[ $current.data.Name ]]"></oj-bind-text>
+        </p>
+        <p slot="value1">
+          <oj-bind-text value="[[ $current.data.StatusCode ]]"></oj-bind-text>
+        </p>
+        <p slot="title2">
+          <oj-bind-text value="[[ $current.data.PrimaryContactPartyName ]]"></oj-bind-text>
+        </p>
+      </oj-vb-list-item>
+    </template>
+  </oj-list-view>
+</div>
+<div class="oj-flex">
+  <div>
+    <oj-bind-text value="This data is being retrieved from OCIGW which in turn is calling Oracle Functions"></oj-bind-text>
+  </div>
+</div>
