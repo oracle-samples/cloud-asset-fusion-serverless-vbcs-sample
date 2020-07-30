@@ -7,20 +7,14 @@ Licensed under the Universal Permissive License v 1.0 as shown at https://oss.or
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <properties>
-        <skipTests>true</skipTests>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fdk.version>1.0.108</fdk.version>
     </properties>
-
-    <groupId>com.example.fn.cloudnativefusion</groupId>
-    <artifactId>SaaSOpportunitiesFn</artifactId>
+    <groupId>com.oracle.idcs.oauth</groupId>
+    <artifactId>idcsOAuthAsserter</artifactId>
     <version>1.0.0</version>
-
-
-
-
+    <packaging>jar</packaging>
 
     <repositories>
         <repository>
@@ -36,58 +30,63 @@ Licensed under the Universal Permissive License v 1.0 as shown at https://oss.or
     </repositories>
 
     <dependencies>
-       
-   <dependency>
+        <!-- FN Dependencies -->
+        <dependency>
             <groupId>com.fnproject.fn</groupId>
             <artifactId>api</artifactId>
             <version>${fdk.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.fnproject.fn</groupId>
-            <artifactId>testing-core</artifactId>
-            <version>${fdk.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fnproject.fn</groupId>
-            <artifactId>testing-junit4</artifactId>
-            <version>${fdk.version}</version>
-            <scope>test</scope>
-        </dependency>
 
-
-
-       <!-- for http client -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.9</version>
-        </dependency>
-
-        <!-- for parsing JWT token -->
+        <!-- Jackson core -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.10.2</version>
-        </dependency>
-
-
-        <!-- Helper dependency to manage the IDCS Oauth flow in function-->
-
-        <dependency>
-            <groupId>com.oracle.idcs.oauth</groupId>
-            <artifactId>idcsOAuthAsserter</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <!-- To set the OCI Region in SecurityHelper -->
-        <dependency>
-            <groupId>com.oracle.oci.sdk</groupId>
-            <artifactId>oci-java-sdk-common</artifactId>
-            <version>1.15.3</version>
             <scope>compile</scope>
         </dependency>
 
+        <!-- APACHE httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.9</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Nimbus JOSE + JWT -->
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>8.4</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Activation API -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>javax.activation-api</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
+        <!-- OCI SDK Dependencies -->
+        <dependency>
+            <groupId>com.oracle.oci.sdk</groupId>
+            <artifactId>oci-java-sdk-vault</artifactId>
+            <version>1.17.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.oci.sdk</groupId>
+            <artifactId>oci-java-sdk-secrets</artifactId>
+            <version>1.17.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.oci.sdk</groupId>
+            <artifactId>oci-java-sdk-common</artifactId>
+            <version>1.17.1</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
@@ -110,32 +109,8 @@ Licensed under the Universal Permissive License v 1.0 as shown at https://oss.or
                     <useSystemClassLoader>false</useSystemClassLoader>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.2</version>
-                <executions>
-                    <execution>
-                        <id>download-required-libs</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-
-                        <configuration>
-                            <includeArtifactIds>idcsOAuthAsserter</includeArtifactIds>
-                            <overWriteReleases>true</overWriteReleases>
-                            <overWriteSnapshots>true</overWriteSnapshots>
-                            <overWriteIfNewer>true</overWriteIfNewer>
-                            <copyPom>true</copyPom>
-                            <outputDirectory>
-                                ${project.basedir}/lib
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+
 </project>

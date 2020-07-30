@@ -1,5 +1,5 @@
 /*
-Copyright © 2020, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2020, Oracle and/or its affiliates. All rights reserved.
 Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 */
 package com.example.saas.fn.cloudnativesaas;
@@ -22,6 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oracle.bmc.Region;
+import com.oracle.idcs.oauth.SecurityHelper;
 
 
 /**
@@ -41,6 +43,8 @@ public class SaaSOpportunitiesFunctions {
     private static final  int SC_INTERNALERROR = 500;
     private static final  String CT_APPLICATION_JSON="application/json";
     private static final  String CT_TEXT_PLAIN="text/plain";
+    private RuntimeContext context;
+    private Boolean fullOAauth = false;
 
 
     private ObjectMapper objectMapper = new ObjectMapper();
@@ -71,10 +75,15 @@ public class SaaSOpportunitiesFunctions {
      */
     @FnConfiguration
     public void config(RuntimeContext ctx) {
+        context = ctx;
+
         fusionHostname = ctx.getConfigurationByKey("fusion_hostname").orElse(NOTSET);
         fnURIBase = ctx.getConfigurationByKey("gtw_uri_base").orElse("/cloudnativefusion/opportunities");
         debugJWT = ctx.getConfigurationByKey("debug_jwt").orElse(NOTSET);
         logDebugLevel = ctx.getConfigurationByKey("debug_level").orElse("INFO");
+
+        // Flag to check if use the Full OAuth IDCS Approach
+        fullOAauth = Boolean.parseBoolean(ctx.getConfigurationByKey("full_oauth").orElse("false"));
 
         LOGGER.info("Configuration read : debugJWT=[" + debugJWT + "] fusionHostname=[" + fusionHostname+"] fnuribase=["+fnURIBase+"]");
     }
@@ -114,6 +123,21 @@ public class SaaSOpportunitiesFunctions {
                 jwttoken = this.debugJWT;
                 LOGGER.info("OVERRIDE JWT TOKEN set");
             }
+
+            // Full Oauth scenario Perform exchange of tokens
+            if(fullOAauth) {
+                LOGGER.log(Level.INFO, "Full Oauth Assertion scenario - Perform exchange of tokens");
+                SecurityHelper idcsSecurityHelper = new SecurityHelper(context)                   // Initialize SecurityHelper with RuntimeContext
+                                                    .setOciRegion(Region.US_PHOENIX_1)            // Specify the OCI region, used to retrieve Secrets.
+                                                    .extractSubFromJwtTokenHeader(rawInput);      // Extracts the subject from Token in Fn-Http-H-Authorization.
+
+                // Get OAuth Access token with JWT Assertion using the principal extracted from Fn-Http-H-Access-Token Header
+                jwttoken = idcsSecurityHelper.getAssertedAccessToken();
+                LOGGER.log(Level.INFO, "Successfully token retrived with IDCS Assertion");
+                LOGGER.log(Level.FINEST, "Access Token from assertion [" + jwttoken + "]");
+            }
+
+
             // if no debug jwt then there must be a real jwt or else error
             if (jwttoken.equals("")) {
                 LOGGER.severe("Error JWT token empty or null");

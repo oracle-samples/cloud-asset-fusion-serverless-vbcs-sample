@@ -38,20 +38,13 @@ Within IDCS there is already a confidential application setup, which in theory w
      
 
 ## Deploying the code
+### Configure Security policies for API Gateway, Oracle Functions and Key Management
 
-### Deploying the code using Terraform
+#### Configure Security Policies for Functions Deployment
 
-Terraform scripts are not yet available but will be added as soon.
+Instructions for setting up security policies for the deployment, and execution, of Oracle Functions can be found in the Oracle Functions getting started guide. We recommend the user follows the Oracle Functions quick-start before continuing.
 
-### Deploying the code using manual steps
-
-#### Configure Security policies for API Gateway, Oracle Functions and Key Management
-
-##### Configure Security Policies for Functions Deployment
-
-Instructions for setting up security policies for the deployment, and execution, of Oracle Functions can be found in the Oracle Functions getting started guide. We recommend the user follows the Oracle Functions quick-start before continuing as this includes documentation/steps in setting up the right permissions for Oracle Functions to work properly.
-
-##### Configure Security Policies for API Gateway
+#### Configure Security Policies for API Gateway
 
 The Following IAM Security Policies will need to be setup. In these example we have granted access to the API Gateway to the OCI Administrators, you should modify this as per your user security requirements.
 
@@ -65,7 +58,7 @@ The Following IAM Security Policies will need to be setup. In these example we h
 | Policy         | Allow dynamic-group **APIGW_DYN_GRP** to use functions-family in compartment <**YOUR_COMPARTMENT_NAME**> | Allow administrators the ability to use functions in the compartment |
 | Policy         | Allow dynamic-group **APIGW_DYN_GRP** to manage public-ips in compartment <**YOUR_COMPARTMENT_NAME**> | Allow administrators the ability to manage IP addresses in the compartment |
 
-##### Configure Security Policies for KMS Access
+#### Configure Security Policies for KMS Access
 
 The Following IAM Security Policies need to be setup
 
@@ -75,6 +68,52 @@ The Following IAM Security Policies need to be setup
 | Policy         | Allow dynamic-group **FN_DYN_GRP** to manage vaults in compartment <**YOUR_COMPARTMENT_NAME**> | Allow access the KMS Vaults |
 | Policy         | Allow dynamic-group **FN_DYN_GRP** to manage keys in compartment <**YOUR_COMPARTMENT_NAME**> | Allow access the keys in KMS |
 | Policy         | Allow dynamic-group **FN_DYN_GRP** to manage key-delegate in compartment <**YOUR_COMPARTMENT_NAME**> | Allow access the key delegates in KMS |
+
+### Deploying the code using Terraform
+
+A Terraform script is provided that creates the required network, API GW, Function, Vault, etc. The only pre-requisite to running the script is to build the function code and push it to the OCIR repository
+
+#### Deploy Functions
+
+**IMPORTANT :** Ensure you have the Oracle Functions SDK installed, configured and you have successfully deployed a sample function. For more information refer to the [Oracle Functions quickstart](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_faas_gettingstarted_quickview/functions_quickview_top/functions_quickview/index.html)
+
+1. Compile the sources and push the images to the repository for each of the functions directories (e.g. gwauthtest, idcs_ocigw and saasopportunitiesfn)
+
+   - Before deploy Functions, navigate to *idcsOAuthAsserter* directory and execute ```mvn clean install``` to generate a required dependency for *saasopportunitiesfn* Function
+   - Navigate to *saasopportunitiesfn* directory and execute ```mvn clean package``` before deploy it to populate needed files for this Function in *saasopportunitiesfn/lib* directory
+   - Navigate each directory and execute ```fn build  followed by fn push
+
+#### Run the Terraform script
+
+The script will create all the required OCI resources needed.  However, prior to executing the script a shell script needs to be created will all of the required details for your OCI environment.
+
+1. Edit the setvars.sh script, setting the following values:
+
+| Variable name            | Required value                                               |
+| ------------------------ | ------------------------------------------------------------ |
+| TF_VAR_tenancy_ocid      | OCID for your OCI tenancy                                    |
+| TF_VAR_user_ocid         | OCID of your user ID                                         |
+| TF_VAR_fingerprint       | Private key fingerprint                                      |
+| TF_VAR_private_key_path  | Path to your private key                                     |
+| TF_VAR_region            | OCI region where the resources will be created               |
+| TF_VAR_compartment_ocid  | OCID for the compartment where the resources will be created |
+| TF_VAR_name_prefix       | Prefix used for the names of all resources created to allow running this script multiple times in the same compartment with different names. |
+| TF_VAR_region_code       | Oracle Registry region code, should be equivalent to region above |
+| TF_VAR_tenancy_namespace | The namespace for your tenancy                               |
+| TF_VAR_repos_name        | The name of the OCIR repository for pushing functions        |
+| TF_VAR_debug_level       | Can be FINE,FINEST,INFO                                      |
+| TF_VAR_fusion_hostname   | e.g. https://myfainstance.fa.em2.oraclecloud.com             |
+| TF_VAR_idcs_app_clientid | Obtained from IDCS console                                   |
+| TF_VAR_idcs_app_secret   | This was generated in the previous step after setting up the Key Management service. |
+| TF_VAR_idcs_app_scopeid  | You get this value from looking at the Oracle Applications (Fusion) application in IDCS, within the configuration/resource section. The field is called "primary audience", and will normally look like ```urn:opc:resource:fa:instanceid=1234567``` |
+| TF_VAR_idcs_app_url      | e.g https://idcs-XXXXXXXXXXXX.identity.oraclecloud.com       |
+
+2. Run terraform init, if it hasn't previously been run in this directory
+3. Run terraform plan. This will validate the script and show what changes will be applied, but won't actually apply them.
+4. Run terraform apply to apply those changes and create the required resources.
+
+### Deploying the code using manual steps
+
 #### Configure Networking for OCI API Gateway and Oracle Functions
 
 - Create a new virtual cloud network with Internet connectivity.  You can either create this manually or you can use the new Networking quick-start
@@ -143,21 +182,26 @@ To protect the OAuth Client Secret, in this example we have opted to store the O
 
 #### Deploy The Functions
 
-1. _Optional_:  You can compile the sources outside of Oracle Functions using the *maven* command within each of the functions directories(e.g. gwauthtest, idcs_ocigw and saasopportunitiesfn), by doing this you can ensure all compile and bring down any external dependencies. 
+1. You needd to compile the sources of the *saasopportunitiesfn* Function because depends on *idcsOAuthAsserter* library. It is required to compile *idcsOAuthAsserter* library before *saasopportunitiesfn*.
+
+   - Navigate to *idcsOAuthAsserter* directory and execute ```mvn clean install``` to generate a required dependency for *saasopportunitiesfn* Function
+   - Navigate to *saasopportunitiesfn* directory and execute ```mvn clean package``` before deploy it to populate needed files for this Function in *saasopportunitiesfn/lib* directory
+
+2. _Optional_:  You can compile the sources outside of Oracle Functions using the *maven* command within each of the functions directories(e.g. gwauthtest, idcs_ocigw and saasopportunitiesfn), by doing this you can ensure all compile and bring down any external dependencies.
 
    - Navigate each directory and execute ```mvn clean package```
 
-2. Navigate to the Oracle Functions console and create a Functions Application called "***cloudnativesaas***"
+3. Navigate to the Oracle Functions console and create a Functions Application called "***cloudnativesaas***"
 
    - Associate it to the VCN previously created and the appropriate public regional subnets 
 
-3. As an optional step you you can send all the syslog debug messages to a remote syslogURL provider, e.g. [papertrail](https://papertrailapp.com/). This can be very useful for debugging any issues.
+4. As an optional step you you can send all the syslog debug messages to a remote syslogURL provider, e.g. [papertrail](https://papertrailapp.com/). This can be very useful for debugging any issues.
 
    ![1578661090858](doc_images/papertrail.png)
   
-4. Deploy the functions to Oracle Functions using the following command ```fn deploy --all``` from within the *functions* directory. This command will read the *app.yaml* and then iterate through each _function_ subdirectory and deploy the function to the application defined it the app.yaml(i.e. cloudnativesaas) in our case.
+5. Deploy the functions to Oracle Functions using the following command ```fn deploy --all``` from within the *functions* directory. This command will read the *app.yaml* and then iterate through each _function_ subdirectory and deploy the function to the application defined it the app.yaml(i.e. cloudnativesaas) in our case.
 
-5. Navigate to the Oracle Functions console, select the *cloudnativesaas* application and check that all the functions have been deployed and note down the individual function _OCIDs_ of all the functions.
+6. Navigate to the Oracle Functions console, select the *cloudnativesaas* application and check that all the functions have been deployed and note down the individual function _OCIDs_ of all the functions.
 
 
    ![1578661208810](doc_images/functions.png)
@@ -195,6 +239,7 @@ These parameters can be modified using the console or via the command line
 |gtw_uri_base|Mandatory|URI to the function|This URI is the combination of the gateway URI AND the Opportunities function path.<br />e.g. /cloudnativesaas/opportunities<br />|
 |kms_endpoint|Mandatory|URL to KMS Service|This is the URL to the KMS Service which can be found using the OCI Console|
 |kms_idcs_secret_key|Mandatory|OCID to the KMS Secret KEY|This is the OCID to the secret key in KMS.|
+|full_oauth|Optional|Use full OAuth flow instead of reuse the income JWT token from Api Gateway|*true* or *false*. By default *false*|
 
 
 

@@ -1,13 +1,25 @@
 #
-#    Copyright © 2020, Oracle and/or its affiliates. All rights reserved.
+#    Copyright (c) 2020, Oracle and/or its affiliates. All rights reserved.
 #    Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 #
 schema_version: 20180708
 name: saasopportunitiesfn
 version: 0.0.139
 runtime: java
-build_image: fnproject/fn-java-fdk-build:jdk11-1.0.104
-run_image: fnproject/fn-java-fdk:jre11-1.0.104
+build_image: fnproject/fn-java-fdk-build:jdk11-1.0.108
+run_image: fnproject/fn-java-fdk:jre11-1.0.108
 cmd: com.example.saas.fn.cloudnativesaas.SaaSOpportunitiesFunctions::handleRequest
 memory: 512
 timeout: 60
+config:
+  AUDIENCE: <AUDIENCE_VALUES>
+  CLIENT_ID: <YOUR_CLIENT_ID>
+  IDCS_URL: <YOUR_IDCS_URL>
+  IDDOMAIN: <YOUR_FA_TENANT_NAME>
+  KEY_ID: <YOUR_IDCS_URL>
+  SCOPE: <FA_RESOURCE_SCOPE>
+  V_KEYSTORE: <YOUR_KS_OCID>
+  V_KS_PASS: <YOUR_KSPASS_OCID>
+  V_PK_PASS: <YOUR_PKPASS_OCID>
+  full_oauth: "true"
+  fusion_hostname: <FUSION_URL>
