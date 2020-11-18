@@ -88,7 +88,7 @@ Please refer to the [installation guide](docs/INSTALLATION.md) for instructions 
 
 
 ## Security
-For more information on security please see [SECURITY.md](security.md) 
+For more information on security please see [SECURITY.md](SECURITY.md) 
 
 ## Help
 If you need help with this sample please log an issue and we'll try and help
