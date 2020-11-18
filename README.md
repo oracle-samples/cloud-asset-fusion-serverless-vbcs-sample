@@ -89,10 +89,7 @@ Please refer to the [installation guide](docs/INSTALLATION.md) for instructions 
 ## Contributing
 `Serverless SaaS Extensions using Oracle Functions` is an open source project.
 See [CONTRIBUTING](./CONTRIBUTING.md) for details.
-Oracle gratefully acknowledges the contributions to <project name> that have been made by the community.
-contributing.md
-contributing.md -&nbspThis website is for sale! -&nbspcontributing Resources and Information.
-This website is for sale! contributing.md is your first and best source for all of the information you’re looking for. From general topics to more of what you would expect to find here, contributing.md has it all. We hope you find what you are searching for!
+Oracle gratefully acknowledges the contributions to `Serverless SaaS Extensions using Oracle Functions` that have been made by the community.
 
 ## Security
 For more information on security please see [SECURITY.md](SECURITY.md) 
