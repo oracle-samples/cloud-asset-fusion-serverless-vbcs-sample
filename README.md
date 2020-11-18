@@ -87,7 +87,11 @@ This architecture above demonstrates the following features:
 Please refer to the [installation guide](docs/INSTALLATION.md) for instructions on how to install and run the sample.
 
 
+## Security
+For more information on security please see [security.md](security.md) 
 
+## Help
+If you need help with this sample please log an issue and we'll try and help
 
 
 
