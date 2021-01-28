@@ -1,5 +1,5 @@
 
-This directory contains a exploded VBCS export (zip) file. You can download a binary zip file from git releases or recreate the zip file from the `CloudNativeSaaSVBCS` directory.
+This directory contains a exploded VBCS export (zip) file. You can download a binary zip file from git releases or recreate the zip file from the `vbcs` directory.
 
 Make sure the `package.json` file is in the root of the resulting zip file.
 
