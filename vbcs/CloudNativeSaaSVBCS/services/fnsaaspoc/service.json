@@ -5,7 +5,7 @@
         "x-vb": {
             "dt-serviceAuthentication": {
                 "type": "oracle_oauth_userid",
-                "clientIdCredentials": "oracle_custom_c05c5200-af54-47c8-bb71-583e6b4524af",
+                "clientIdCredentials": "oracle_custom_xxxx",
                 "scope": "https://fntest.oracle.com/fntest"
             },
             "dt-wizardType": "rest"
@@ -15,7 +15,7 @@
     "schemes": [
         "https"
     ],
-    "host": "iq37z7aqmmmbcddqoezkwdeai4.apigateway.us-phoenix-1.oci.customer-oci.com",
+    "host": "xxxxxx.apigateway.us-phoenix-1.oci.customer-oci.com",
     "basePath": "/fnsaaspoc",
     "definitions": {
         "Getgetopportunity": {
