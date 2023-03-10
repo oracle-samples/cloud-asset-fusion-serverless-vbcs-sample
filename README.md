@@ -82,7 +82,7 @@ This architecture above demonstrates the following features:
 
 - The client above is VBCS however it could be anything which can consume REST, E.g. Oracle ADF Faces, ReactJS, Oracle Fusion CX groovy functions, a mobile app Etc. 
 
-## Installation and Running the Example
+## Installation
 
 Please refer to the [installation guide](docs/INSTALLATION.md) for instructions on how to install and run the sample.
 
