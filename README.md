@@ -82,7 +82,7 @@ This architecture above demonstrates the following features:
 
 - The client above is VBCS however it could be anything which can consume REST, E.g. Oracle ADF Faces, ReactJS, Oracle Fusion CX groovy functions, a mobile app Etc. 
 
-## Installation and Running the Example
+## Installation
 
 Please refer to the [installation guide](docs/INSTALLATION.md) for instructions on how to install and run the sample.
 
@@ -97,9 +97,9 @@ For more information on security please see [SECURITY.md](SECURITY.md)
 ## Help
 If you need help with this sample please log an issue and we'll try and help
 
-Copyright (c) 2020, Oracle and/or its affiliates. All rights reserved.
-Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+## License
 
+Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 
-
-
+Released under the Universal Permissive License v1.0 as shown at
+<https://oss.oracle.com/licenses/upl/>.
